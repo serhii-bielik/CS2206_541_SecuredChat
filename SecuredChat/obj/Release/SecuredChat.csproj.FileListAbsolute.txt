@@ -1,0 +1,8 @@
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\bin\Release\SecuredChat.exe
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\bin\Release\SecuredChat.pdb
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.ChatWindow.resources
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.Properties.Resources.resources
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.Welcome.resources
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.csproj.GenerateResource.Cache
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.exe
+C:\Users\WD\Documents\Visual Studio 2015\Projects\SecuredChat\SecuredChat\obj\Release\SecuredChat.pdb
