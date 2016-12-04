@@ -7,3 +7,12 @@ c:\users\wd\documents\visual studio 2015\Projects\SecuredChat\SecuredChat\obj\De
 c:\users\wd\documents\visual studio 2015\Projects\SecuredChat\SecuredChat\obj\Debug\SecuredChat.exe
 c:\users\wd\documents\visual studio 2015\Projects\SecuredChat\SecuredChat\obj\Debug\SecuredChat.pdb
 c:\users\wd\documents\visual studio 2015\Projects\SecuredChat\SecuredChat\obj\Debug\SecuredChat.ChatWindow.resources
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.exe
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.pdb
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.csprojResolveAssemblyReference.cache
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.ChatWindow.resources
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.Properties.Resources.resources
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.Welcome.resources
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\obj\Debug\SecuredChat.csproj.GenerateResource.Cache
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\bin\Debug\SecuredChat.exe
+C:\Users\WD\Desktop\SecuredChat\SecuredChat\bin\Debug\SecuredChat.pdb

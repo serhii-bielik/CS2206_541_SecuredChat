@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RSACrypter.cs" />
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
@@ -87,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pixelkit-Flat-Jewels-Chat.ico" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\lock_open.png" />
+    <None Include="Resources\comment.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
