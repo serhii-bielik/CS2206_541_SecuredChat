@@ -1,11 +1,7 @@
 ﻿using SecuredChat.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Net.Sockets;
 using System.Reflection;
@@ -43,14 +39,34 @@ namespace SecuredChat
             if (isServer)
             {
                 this.Text = "[Server] Conversation";
-                listener = new TcpListener(System.Net.IPAddress.Any, wlk.Port);
-                listener.Start();
+                try
+                {
+                    listener = new TcpListener(System.Net.IPAddress.Any, wlk.Port);
+                    listener.Start();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Cannot start the server.\nDetails: " + ex.Message, "Fatal Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
             }
             else
             {
                 this.Text = "[Client] Conversation";
-                client = new TcpClient(wlk.Ip, wlk.Port);
-            }            
+                try
+                {
+                    client = new TcpClient(wlk.Ip, wlk.Port);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Cannot connect to the server.\nDetails: " + ex.Message, "Fatal Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(1);
+                }
+            }
+
+            AddMessageToRichChat("Welcome to the Secured Chat!" + Environment.NewLine);
 
             ListenerThread = new Thread(DoListen);
             ListenerThread.IsBackground = true;
@@ -117,6 +133,7 @@ namespace SecuredChat
                     {
                         netStream.Close();
                         AddMessageToRichChat("System: Partner disconnected. Reason: " + ex.Message + Environment.NewLine);
+                        DisableInterface(null);
                         break;
                     }
                 }
@@ -165,7 +182,7 @@ namespace SecuredChat
                 this.richChat.ScrollToCaret();
                 if(isNotifications)
                 {
-                    if(!this.Focused && text.Contains("Partner"))
+                    if(!this.Focused && text.Contains("Partner: "))
                     {
                         notifyIcon1.ShowBalloonTip(7000, "New Message", text, ToolTipIcon.Info);
                         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -190,6 +207,23 @@ namespace SecuredChat
             else
             {
                 this.richMessage.Clear();
+            }
+        }
+
+        private void DisableInterface(string text)
+        {
+            if (this.richMessage.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(DisableInterface);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.richMessage.Clear();
+                richMessage.Enabled = false;
+                btnEncrypt.Enabled = false;
+                btnSend.Enabled = false;
+                btnNotifications.Enabled = false;
             }
         }
 
@@ -246,6 +280,8 @@ namespace SecuredChat
             if (this.richChat.Text.Contains(word))
             {
                 int index = -1;
+                int index2 = -1;
+                richChat.DeselectAll();
                 int selectStart = this.richChat.SelectionStart;
 
                 while ((index = this.richChat.Text.IndexOf(word, (index + 1))) != -1)
@@ -253,10 +289,11 @@ namespace SecuredChat
                     this.richChat.Select((index + startIndex), word.Length);
                     this.richChat.SelectionColor = color;
                     this.richChat.SelectionFont = new Font(richChat.SelectionFont, FontStyle.Bold);
-                    this.richChat.Select(selectStart, 0);
+                    this.richChat.Select(word.Length, index2);
                     this.richChat.SelectionColor = Color.Black;
                     this.richChat.SelectionFont = new Font(richChat.SelectionFont, FontStyle.Regular);
-                }
+                   
+                }                
             }
         }
 
@@ -264,7 +301,7 @@ namespace SecuredChat
         {
             CheckKeyword("Me:", Color.Blue, 0);
             CheckKeyword("Partner:", Color.Red, 0);
-            //CheckKeyword("System:", Color.Purple, 0);
+            CheckKeyword("System:", Color.DarkGreen, 0);
         }
 
         private void richMessage_TextChanged(object sender, EventArgs e)
