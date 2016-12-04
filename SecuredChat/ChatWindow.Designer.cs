@@ -32,9 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatWindow));
             this.richChat = new System.Windows.Forms.RichTextBox();
             this.richMessage = new System.Windows.Forms.RichTextBox();
-            this.btnEncrypt = new System.Windows.Forms.Button();
-            this.btnSend = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnSend = new System.Windows.Forms.Button();
+            this.btnNotifications = new System.Windows.Forms.Button();
+            this.btnEncrypt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richChat
@@ -45,7 +47,7 @@
             this.richChat.Location = new System.Drawing.Point(12, 12);
             this.richChat.Name = "richChat";
             this.richChat.ReadOnly = true;
-            this.richChat.Size = new System.Drawing.Size(331, 271);
+            this.richChat.Size = new System.Drawing.Size(331, 281);
             this.richChat.TabIndex = 0;
             this.richChat.Text = "";
             this.richChat.TextChanged += new System.EventHandler(this.richChat_TextChanged);
@@ -55,7 +57,7 @@
             this.richMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richMessage.Enabled = false;
-            this.richMessage.Location = new System.Drawing.Point(13, 289);
+            this.richMessage.Location = new System.Drawing.Point(13, 299);
             this.richMessage.MaxLength = 122;
             this.richMessage.Name = "richMessage";
             this.richMessage.Size = new System.Drawing.Size(243, 60);
@@ -64,25 +66,20 @@
             this.toolTip1.SetToolTip(this.richMessage, "Type your message here");
             this.richMessage.TextChanged += new System.EventHandler(this.richMessage_TextChanged);
             // 
-            // btnEncrypt
+            // notifyIcon1
             // 
-            this.btnEncrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEncrypt.Enabled = false;
-            this.btnEncrypt.Image = global::SecuredChat.Properties.Resources.lock_open;
-            this.btnEncrypt.Location = new System.Drawing.Point(259, 289);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(29, 60);
-            this.btnEncrypt.TabIndex = 4;
-            this.toolTip1.SetToolTip(this.btnEncrypt, "Enable Secured Mode");
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon1.BalloonTipTitle = "New Message";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "SecuredChat";
+            this.notifyIcon1.Visible = true;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Enabled = false;
             this.btnSend.Image = global::SecuredChat.Properties.Resources.comment;
-            this.btnSend.Location = new System.Drawing.Point(291, 289);
+            this.btnSend.Location = new System.Drawing.Point(291, 299);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(52, 60);
             this.btnSend.TabIndex = 2;
@@ -93,12 +90,38 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
+            // btnNotifications
+            // 
+            this.btnNotifications.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNotifications.Image = global::SecuredChat.Properties.Resources.sound;
+            this.btnNotifications.Location = new System.Drawing.Point(259, 330);
+            this.btnNotifications.Name = "btnNotifications";
+            this.btnNotifications.Size = new System.Drawing.Size(29, 29);
+            this.btnNotifications.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.btnNotifications, "Disable Notifications");
+            this.btnNotifications.UseVisualStyleBackColor = true;
+            this.btnNotifications.Click += new System.EventHandler(this.btnNotifications_Click);
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEncrypt.Enabled = false;
+            this.btnEncrypt.Image = global::SecuredChat.Properties.Resources.lock_open;
+            this.btnEncrypt.Location = new System.Drawing.Point(259, 299);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(29, 29);
+            this.btnEncrypt.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.btnEncrypt, "Enable Secured Mode");
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
             // ChatWindow
             // 
             this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 361);
+            this.ClientSize = new System.Drawing.Size(355, 371);
+            this.Controls.Add(this.btnNotifications);
             this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.richMessage);
@@ -120,6 +143,8 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Button btnNotifications;
     }
 }
 

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -20,9 +23,11 @@ namespace SecuredChat
         TcpListener listener;
         TcpClient client;
         RSACrypter crypter;
+        SoundPlayer sp;
         byte[] myReadBuffer = new byte[2048];
         bool isServer;
         bool isPublicSertificateSent;
+        bool isNotifications = true;
 
         public ChatWindow()
         {
@@ -158,6 +163,20 @@ namespace SecuredChat
                 this.richChat.Text += text;
                 this.richChat.SelectionStart = richChat.Text.Length;
                 this.richChat.ScrollToCaret();
+                if(isNotifications)
+                {
+                    if(!this.Focused && text.Contains("Partner"))
+                    {
+                        notifyIcon1.ShowBalloonTip(7000, "New Message", text, ToolTipIcon.Info);
+                        Assembly assembly = Assembly.GetExecutingAssembly();
+                        using (Stream s = assembly.GetManifestResourceStream("SecuredChat.icq-message.wav"))
+                        {
+                            sp = new SoundPlayer(s);
+                            sp.Play();
+                        }
+                    }                        
+                }
+                
             }
         }
 
@@ -275,6 +294,22 @@ namespace SecuredChat
             {
                 SendMessage("$DISENCRYPT$", true);
                 DisableEncryptionInterface(null);
+            }
+        }
+
+        private void btnNotifications_Click(object sender, EventArgs e)
+        {
+            if(isNotifications)
+            {
+                isNotifications = false;
+                btnNotifications.Image = Resources.sound_mute;
+                toolTip1.SetToolTip(btnNotifications, "Disable Notifications");
+            }
+            else
+            {
+                isNotifications = true;
+                btnNotifications.Image = Resources.sound;
+                toolTip1.SetToolTip(btnNotifications, "Enable Notifications");
             }
         }
     }

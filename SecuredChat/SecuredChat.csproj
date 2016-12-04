@@ -88,7 +88,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="icq-message.wav" />
     <Content Include="Pixelkit-Flat-Jewels-Chat.ico" />
+    <None Include="Resources\sound.png" />
+    <None Include="Resources\sound_mute.png" />
     <None Include="Resources\lock.png" />
     <None Include="Resources\lock_open.png" />
     <None Include="Resources\comment.png" />
